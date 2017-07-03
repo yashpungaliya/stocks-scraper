@@ -3,7 +3,6 @@ import time
 import urllib.request
 from datetime import datetime
 import os.path
-print(os.path.abspath('..'))
 
 import smtplib
 from email.mime.multipart import MIMEMultipart
@@ -41,7 +40,13 @@ def find_stock_val(data):
 def write_to_csv(filename,finalVal):
 	print("Filename:" + filename)
 	parentPath=os.path.abspath('.')
-	with open(parentPath+'/data/'+filename, 'a') as f:
+	p1 = os.path.abspath('..')
+	foldername=datetime.now().strftime("%D")
+	foldername=foldername.replace("/","-")
+	myPath=p1+'/data/'+foldername
+	if not os.path.exists(myPath):
+		os.makedirs(myPath)
+	with open(myPath+'/'+filename, 'a') as f:
 		dt = str(datetime.now().time())
 		dt = dt[:8]
 		dt = dt.replace(":", "")
