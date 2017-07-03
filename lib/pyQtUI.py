@@ -5,8 +5,8 @@ from lib.getStockVal import *
 from lib.plotStockGraph import *
 
 stock_code= ""
-times=""
-delay=""
+times=10
+delay=5
 def window():
     app = QApplication(sys.argv)
     win = QWidget()
