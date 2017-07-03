@@ -1,11 +1,18 @@
+import os
+
 import matplotlib.pyplot as plt
 import csv
+from datetime import datetime
 
 
 def plot_graph(filename):
     x = []
     y = []
-    with open('./data/'+filename, 'r') as csvfile:
+    p1 = os.path.abspath('..')
+    foldername = datetime.now().strftime("%D")
+    foldername = foldername.replace("/", "-")
+    myPath = p1 + '/data/' + foldername
+    with open(myPath+'/'+filename, 'r') as csvfile:
         plots = csv.reader(csvfile, delimiter=';')
         for row in plots:
             x.append(float(row[1]))
@@ -18,4 +25,3 @@ def plot_graph(filename):
     plt.title('MyGraph')
     plt.legend()
     plt.show()
-
